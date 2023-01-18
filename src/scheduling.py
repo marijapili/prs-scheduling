@@ -1,31 +1,30 @@
 from numpy import inf
 from JobShop import *
-import networkx as nx
 
-def calculate_CTi(out, time):
+def calculate_CTi(out: list, time: list) -> list:
     CTi = []
     for i, j in zip(out, time):
         CTi.append(i + j)
     return CTi
 
-def calculate_CT(CTi):
+def calculate_CT(CTi: list) -> float:
     return sum(CTi)/len(CTi)
 
-def calculate_CTku(CTi, deadline):
+def calculate_CTku(CTi: list, deadline: list) -> list:
     CTku = []
     for i, j in zip(CTi, deadline):
         CTku.append(i - j)
     return CTku
 
-def calculate_CTu(CTku):
+def calculate_CTu(CTku: list) -> float:
     m = max(CTku)
     return max(m, 0)
 
-def calculate_TH(CTi):
+def calculate_TH(CTi: list) -> float:
     M = max(CTi)
     return len(CTi)/M
 
-def calculate_WIP(CT, TH):
+def calculate_WIP(CT: float, TH: float) -> float:
     return  CT * TH
 
 def get_start_times(t: list, order: list) -> list:
