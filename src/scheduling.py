@@ -130,5 +130,12 @@ if 'a' in task.lower():
 elif 'b' in task.lower():
     J = eval(input('Unesite definiciju sustava u obliku liste listi uredenih parova: '))
     js = JobShop(J)
+
+    out = js.shifting_bottleneck()
         
-    print(js.shifting_bottleneck())
+    for machine in sorted(out.keys()):
+        print(f"stroj {machine}:")
+        print(f"m1j: {out[machine][0]}")
+        print(f"m2j: {out[machine][1]}")
+
+    print(f"M={max([interval[1] for machine in out for interval in out[machine][1]])}")
