@@ -98,11 +98,13 @@ task = input('Odaberite zadatak a) ili b): ')
 
 if 'a' in task.lower():
 
-    time = eval(input('Unesite vremena trajanja u obliku liste: '))
-    deadline = eval(input('Unesite rokove poslova u obliku liste: '))
+    t = eval(input('Unesite vremena trajanja u obliku liste: '))
+    d = eval(input('Unesite rokove poslova u obliku liste: '))
 
     mode = input('Unesite nacin rasporedivanja (Moore, EDD ili SPT): ')
 
+    time = t[:]
+    deadline = d[:]
     if mode.upper() == 'EDD':
         out = EDD(time,deadline)
     elif mode.upper() == 'SPT':
@@ -110,9 +112,9 @@ if 'a' in task.lower():
     elif mode.upper() == 'MOORE':
         out = Moore(time,deadline)
 
-    CTi = calculate_CTi(out, time)
+    CTi = calculate_CTi(out, t)
     CT = calculate_CT(CTi)
-    CTku = calculate_CTku(CTi, deadline)
+    CTku = calculate_CTku(CTi, d)
     CTu = calculate_CTu(CTku)
     TH = calculate_TH(CTi)
     WIP = calculate_WIP(CT, TH)
